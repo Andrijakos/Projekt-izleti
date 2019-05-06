@@ -1,4 +1,3 @@
-from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,6 +11,7 @@ class User(UserMixin, db.Model):
     surname = db.Column(db.String(64), index=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
+    cellphone = db.Column(db.Integer(15), index=True, unique=True)   # dodao i to
     password_hash = db.Column(db.String(128))
     id_address = db.Column(db.Integer, db.ForeignKey('address.id'))
 
@@ -24,16 +24,11 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-'''
-TripUser = Table('TripUser',
-    Column('id', Integer, primary_key=True),
-    Column('id_user', Integer, ForeignKey('user.id')),
-    Column('id_trip', Integer, ForeignKey('trip.id')))
-    '''
 
 class TripUser(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     trip_id = db.Column(db.Integer, db.ForeignKey('trip.id'), primary_key=True)
+
 
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,9 +36,11 @@ class Address(db.Model):
     street_number = db.Column(db.Integer, index=True)
     postal_number = db.Column(db.Integer, index=True)
     city = db.Column(db.String(64), index=True)
+    country = db.Column(db.String(64), index=True)  # dodao
 
     def __repr__(self):
         return '<Adress {}>'.format(self.city)
+
 
 class Trip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -59,7 +56,7 @@ class Trip(db.Model):
     def __repr__(self):
         return '<Trip {}>'.format(self.trip_name)
 
-@login.user_loader
 
+@login.user_loader
 def load_user(id):
     return User.query.get(int(id))
