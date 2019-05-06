@@ -24,33 +24,40 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-
+'''
 TripUser = Table('TripUser',
     Column('id', Integer, primary_key=True),
     Column('id_user', Integer, ForeignKey('user.id')),
     Column('id_trip', Integer, ForeignKey('trip.id')))
-    
+    '''
 
-class Address():
+class TripUser(db.Model):
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    trip_id = db.Column(db.Integer, db.ForeignKey('trip.id'), primary_key=True)
+
+class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     street_name = db.Column(db.String(64), index=True)
     street_number = db.Column(db.Integer, index=True)
     postal_number = db.Column(db.Integer, index=True)
     city = db.Column(db.String(64), index=True)
 
+    def __repr__(self):
+        return '<Adress {}>'.format(self.city)
 
-class Trip():
+class Trip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trip_name = db.Column(db.String(64), index=True)
     max_number = db.Column(db.Integer, index=True)
-    start_date = db.Column(db.Integer, index=True)
-    end_date = db.Column(db.Integer, index=True)
+    start_date = db.Column(db.DateTime, index=True)
+    end_date = db.Column(db.DateTime, index=True)
     price = db.Column(db.Integer, index=True)
     destination = db.Column(db.String(64), index=True)
     trip_description = db.Column(db.String(64), index=True)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-
+    def __repr__(self):
+        return '<Trip {}>'.format(self.trip_name)
 
 @login.user_loader
 
