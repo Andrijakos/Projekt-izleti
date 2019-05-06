@@ -1,0 +1,2 @@
+set FLASK_APP=izlet.py
+FLASK_DEBUG=1
