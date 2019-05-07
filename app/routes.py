@@ -71,3 +71,7 @@ def make_trip():
         return redirect(url_for('trips'))
     return render_template('create_trip.html', title='Create Trip', form=form)
 
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html')

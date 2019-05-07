@@ -2,7 +2,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
+    <h1>Hi, {{ current_user.name }}{{ current_user.surname }}! </h1>
+<h1>Hi, {{ current_user.id }}!</h1>
 
     <div><p>Bit će ovo <b>dobro</b></p></div>
 
