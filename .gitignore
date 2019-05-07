@@ -13,9 +13,11 @@ build/
 develop-eggs/
 dist/
 downloads/
+migrations/
 eggs/
 .eggs/
 .idea
+.idea/
 .idea/*
 lib/
 lib64/
