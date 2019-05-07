@@ -12,9 +12,9 @@ class RegistrationForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=2, max=20)])
     surname = StringField('Surname', validators=[DataRequired(), Length(min=2, max=20)])
     cellphone = IntegerField('Cellphone', validators=[DataRequired()])
-    address = StringField('Address', validators=[DataRequired()])#kako razdijelit adresu na ulicu i broj??
+    address = StringField('Address', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
-    zipcode = IntegerField('Zipcode', validators=[DataRequired()]) #da li će radit samo ovako?
+    zipcode = IntegerField('Zipcode', validators=[DataRequired()])
     country = StringField('Country', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
@@ -44,3 +44,16 @@ class TripForm(FlaskForm):
     end_date = DateTimeField('End date', validators=[DataRequired()])
     description = TextAreaField('Trip description', validators=[DataRequired(), Length(max=1000)])  #vidit textareafield dal će valjat
     price = IntegerField('Price', validators=[DataRequired()])
+
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=20)])
+    surname = StringField('Surname', validators=[DataRequired(), Length(min=2, max=20)])
+    cellphone = IntegerField('Cellphone', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    zipcode = IntegerField('Zipcode', validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')

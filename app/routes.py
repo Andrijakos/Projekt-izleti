@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, TripForm
+from app.forms import LoginForm, RegistrationForm, TripForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Trip
 from werkzeug.urls import url_parse
@@ -72,6 +72,52 @@ def make_trip():
     return render_template('create_trip.html', title='Create Trip', form=form)
 
 
-@app.route('/profile', methods=['GET', 'POST'])
-def profile():
-    return render_template('profile.html')
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    #  tu će ići Trips
+    return render_template('user.html', user=user)   # dodat trips=trips
+
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.name = form.name.data
+        current_user.surname = form.surname.data
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.address = form.address.data
+        current_user.postal_number = form.zipcode.data
+        current_user.city = form.city.data
+        current_user.country = form.country.data
+        current_user.tel_number = form.cellphone.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit_profile'))
+    elif request.method == 'GET':
+        form.name.data = current_user.name
+        form.surname.data = current_user.surname
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.address.data = current_user.address
+        form.zipcode.data = current_user.postal_number
+        form.city.data = current_user.city
+        form.country.data = current_user.country
+        form.cellphone.data = current_user.tel_number
+    return render_template('edit_profile.html', title='Edit Profile',
+                           form=form)
+
+
+
+# dekorator za last seen ako ćemo ubacit
+'''
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
+'''
