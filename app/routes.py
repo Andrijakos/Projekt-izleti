@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm,TripForm
+from app.forms import LoginForm, RegistrationForm, TripForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Address, Trip
+from app.models import User, Trip
 from werkzeug.urls import url_parse
 
 @app.route('/')
@@ -41,9 +41,17 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(name=form.name.data, surname=form.surname.data, username=form.username.data, email=form.email.data, cellphone=form.cellphone.data)  # Gdje je problem?
+        user = User()
+        user.name = form.name.data
+        user.surname = form.surname.data
+        user.username = form.username.data
+        user.email = form.email.data
+        user.address = form.address.data
+        user.postal_number = form.zipcode.data
+        user.city = form.city.data
+        user.country = form.country.data
+        user.tel_number = form.cellphone.data
         user.set_password(form.password.data)
-        address = Address()  #  provjerit da li adresa postoji ako da dodat id postojeće useru ako ne napravit novu i dodat id nove useru
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')

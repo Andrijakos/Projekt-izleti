@@ -32,6 +32,55 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.surname.label }}<br>
+            {{ form.surname(size=32) }}<br>
+            {% for error in form.surname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.cellphone.label }}<br>
+            {{ form.cellphone(size=32) }}<br>
+            {% for error in form.cellphone.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.address.label }}<br>
+            {{ form.address(size=32) }}<br>
+            {% for error in form.address.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.city.label }}<br>
+            {{ form.city(size=32) }}<br>
+            {% for error in form.city.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.zipcode.label }}<br>
+            {{ form.zipcode(size=32) }}<br>
+            {% for error in form.zipcode.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.country.label }}<br>
+            {{ form.country(size=32) }}<br>
+            {% for error in form.country.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
         <p>{{ form.submit() }}</p>
 </form>
     <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>

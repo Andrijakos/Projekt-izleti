@@ -9,12 +9,12 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=50)])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    name = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=20)])
     surname = StringField('Surname', validators=[DataRequired(), Length(min=2, max=20)])
-    cellphone = IntegerField('Cellphone', validators=[DataRequired(), Length(max=15)])
+    cellphone = IntegerField('Cellphone', validators=[DataRequired()])
     address = StringField('Address', validators=[DataRequired()])#kako razdijelit adresu na ulicu i broj??
     city = StringField('City', validators=[DataRequired()])
-    zipcode = IntegerField('Zipcode', validators=[DataRequired(), Length(5)]) #da li će radit samo ovako?
+    zipcode = IntegerField('Zipcode', validators=[DataRequired()]) #da li će radit samo ovako?
     country = StringField('Country', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
@@ -30,7 +30,7 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
