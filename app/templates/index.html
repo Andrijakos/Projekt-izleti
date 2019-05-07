@@ -256,12 +256,14 @@
 												<input id="Phone" type="text" class="validate form-control" required="required" placeholder="Mobitel">
 												
 											</div>
-											<div class="col-12 my-2 row">
-												<input type="text" id="ulica" class="col-12 validate form-control" required="required" placeholder="Adresa">
+											<div class="col-12 my-2 row justify-content-around">
+												<input type="text" id="ulica" class="col-5 validate form-control" required="required" placeholder="Adresa">
+												<input type="text" id="grad" class="col-5 validate form-control" required="required" placeholder="Grad">
 											</div>
 											<div class="col-12 my-2 row justify-content-around">
-												<input type="text" id="grad" class="col-5 validate form-control" required="required" placeholder="Grad">
+												
 												<input type="text" id="post_br" class="col-5 validate form-control" required="required" placeholder="Poštanski broj">
+												<input type="text" id="country" class="col-5 validate form-control" required="required" placeholder="Država">
 											</div>
 											
 											<div class="input-field col-s-12  my-2">
@@ -390,13 +392,13 @@
 						
 						{# <!-- ***********************************************     UPLOAD SLIKA    ************************************************** --> #}
 						<div class="row col-12  my-2">
-							<div class="jquery-script-ads"><script type="text/javascript"><!--
+							<div class="jquery-script-ads"><script type="text/javascript">
 										google_ad_client = "ca-pub-2783044520727903";
-										/* jQuery_demo */
+									
 										google_ad_slot = "2780937993";
 										google_ad_width = 728;
 										google_ad_height = 90;
-								//-->
+							
 								</script>
 								<script type="text/javascript"
 								src="{{ url_for('static', filename='http://pagead2.googlesyndication.com/pagead/show_ads.js') }}">
@@ -412,7 +414,7 @@
 									<input class="button button--big-bottom" type="button" value="Upload Selected Files">
 								</form>
 							</div>
-							<script src="{{ url_for('static', filename='http://code.jquery.com/jquery-1.12.4.min.js') }}"></script>
+							<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 							<script src="{{ url_for('static', filename='dist/jquery.imageuploader.js') }}"></script>
 							<script>
 							(function(){
