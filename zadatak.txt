@@ -1,0 +1,2 @@
+1.trip.html, forma i sve isto kao register
+kreirat trip.html, 
