@@ -41,12 +41,12 @@
 							<div class="container-fluid">
 								<div class="row justify-content-around">
 									<div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
-										<div><span class="narancasto">Naziv izleta:</span> Lorem ipsum</div>
+										<div><span class="narancasto">Naziv izleta:</span></div>
 										<div>21.5.2019. <span class="narancasto"><i class="fas fa-long-arrow-alt-right"></i></span> 23.5.2019.</div>
-										<div><span class="narancasto">Destinacija:</span> Hvar</div>
-										<div><span class="narancasto">Troškovi</span></div>
-										<div><span class="narancasto">Hrana:</span> 200 kn</div>
-										<div><span class="narancasto">Smještaj:</span> 1000 kn</div>
+										<div><span class="narancasto">Destinacija:</span> </div>
+										<div><span class="narancasto">Cijena:</span> </div>
+										{# <div><span class="narancasto">Hrana:</span> 200 kn</div>
+										<div><span class="narancasto">Smještaj:</span> 1000 kn</div> #}
 									</div>
 									<div class="col-md-6"><img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt=""></div>
 								</div>
@@ -262,7 +262,7 @@
 											</div>
 											<div class="col-12 my-2 row justify-content-around">
 												
-												<input type="text" id="post_br" class="col-5 validate form-control" required="required" placeholder="Poštanski broj">
+												<input type="text" id="post_br" class="col-5 validate form-control" maxlength="5" required="required" placeholder="Poštanski broj">
 												<input type="text" id="country" class="col-5 validate form-control" required="required" placeholder="Država">
 											</div>
 											
@@ -277,7 +277,7 @@
 											<div class="container d-flex justify-content-center">
 												<div class="picture-container">
 													<div class="picture border d-flex align-content center">
-														<img id="wizardPicturePreview" class="img-fluid" src="{{ url_for('static', filename='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png') }}" title="">
+														<img id="wizardPicturePreview" class="img-fluid" src="//cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" title="">
 														<input type="file" id="wizard-picture" class="">
 													</div>
 													<h6 class="font-weight-light">Odaberi fotografiju</h6>
