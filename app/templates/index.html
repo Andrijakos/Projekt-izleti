@@ -1,9 +1,819 @@
-    
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Izleti</title>
+		<!-- Font Awesome Icons -->
+		<link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+		<!-- Google Fonts -->
+		<link href="//fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+		<link href='//fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+		<!-- Plugin CSS -->
+		<link href="{{ url_for('static', filename='dist/styles.imageuploader.css') }}" rel="stylesheet" type="text/css">
+		
+		<!-- Theme CSS - Includes Bootstrap -->
+		<link href="{{ url_for('static', filename='css/creative.min.css') }}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/izleti.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/upload_image.css') }}">
+		<!-- datum -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/dodaj_trosak.js') }}"></script>
+	</head>
+	
+	<body id="page-top">
 
-{% block content %}
-    <h1>Hi, guys!</h1>
+		{#     IZLET    #}
+		<div class="container">
+			<div class="modal fade" id="izlet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Hvar</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<div class="row justify-content-around">
+									<div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+										<div><span class="narancasto">Naziv izleta:</span> Lorem ipsum</div>
+										<div>21.5.2019. <span class="narancasto"><i class="fas fa-long-arrow-alt-right"></i></span> 23.5.2019.</div>
+										<div><span class="narancasto">Destinacija:</span> Hvar</div>
+										<div><span class="narancasto">Troškovi</span></div>
+										<div><span class="narancasto">Hrana:</span> 200 kn</div>
+										<div><span class="narancasto">Smještaj:</span> 1000 kn</div>
+									</div>
+									<div class="col-md-6"><img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt=""></div>
+								</div>
+								
+								<div class="col-12 d-flex flex-column align-items-left justify-content-center py-3">
+									<div><span class="narancasto">Opis izleta:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates provident nostrum esse sit, ullam corporis nesciunt adipisci, reiciendis totam, ad nobis, deleniti itaque obcaecati minus quam amet accusantium earum suscipit. Ab illum quasi, explicabo nemo rerum delectus recusandae mollitia inventore animi at quisquam neque, quo necessitatibus, distinctio perferendis, voluptates omnis.</div>
+									<div class="col-12 d-flex justify-content-center">
+										
+									<iframe src="//www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45698.68077619159!2d16.46048886487152!3d43.18431757875971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133581144d23ffe7%3A0x400ad50862bcfa0!2sHvar!5e1!3m2!1sen!2shr!4v1557123416582!5m2!1sen!2shr" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+									
+								</div>
+							</div>
+							<hr>
+							<div><span class="narancasto">Galerija:</span></div>
+							<div class="row">
+								<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+								{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+								<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+								<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+								<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-danger"><i class="fas fa-user-plus"></i> Prijavi se</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div><p>Bit će ovo <b>dobro</b></p></div>
 
-{% endblock %}
+		{#    MOJ PROFIL    ************************************************** #}
+		<div class="container">
+			<div class="modal fade" id="user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Moj profil</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<div class="row justify-content-around">
+									<div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+										<div><span class="narancasto">Ime:</span> Kenny</div>
+										<div><span class="narancasto">Prezime:</span> McCormic</div>
+										<div><span class="narancasto">Email:</span> kenny.m@gmail.com</div>
+									</div>
+									<div class="col-md-4"><img class="img-fluid" src="{{ url_for('static', filename='img/profil/kenny.jpg') }}" alt=""></div>
+								</div>
+								<hr>
+								<div><span class="narancasto">Stvoreni izleti:</span></div>
+								<div class="row">
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+									{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+								</div>
+								<hr>
+								<div><span class="narancasto">Prijavljeni izleti:</span></div>
+								<div class="row">
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+									{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{# <!-- ***********************************************     PROFIL OSTALIH KORISNIKA    ************************************************** --> #}
+		<div class="container">
+			<div class="modal fade" id="user_profile_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Profil</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<div class="row justify-content-around">
+									<div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+										<div><span class="narancasto">Ime:</span> Ivo</div>
+										<div><span class="narancasto">Prezime:</span> Ivic</div>
+										<div><span class="narancasto">Email:</span> ivo.ivic@gmail.com</div>
+									</div>
+									<div class="col-md-4"><img class="img-fluid" src="{{ url_for('static', filename='img/profil/6.jpg') }}" alt=""></div>
+								</div>
+								<hr>
+								<div><span class="narancasto">Prijavljeni izleti:</span></div>
+								<div class="row">
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+									{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-outline-danger"><i class="fas fa-user-plus"></i> Prati</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{# <!-- ***********************************************     PRIJAVA    ************************************************** --> #}
+		<div class="container">
+			<div class="modal font-weight-light" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<form class="text-center p-5">
+								{# <!-- Username --> #}
+								<input type="text" id="username_login" class="form-control mb-4" required="required" placeholder="Username">
+								<!-- Password -->
+								<input type="password" id="password_login" class="form-control mb-4" required="required" placeholder="Lozinka">
+								<div class="d-flex justify-content-around">
+									<div>
+										{# <!-- Remember me --> #}
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+											<label class="custom-control-label" for="defaultLoginFormRemember">Zapamti prijavu</label>
+										</div>
+									</div>
+									<div>
+										{# <!-- Forgot password --> #}
+										<a href="">Zaboravili ste lozinku?</a>
+									</div>
+								</div>
+								
+								<hr>
+								{# <!-- Register --> #}
+								<p style="font-size: 0.9rem">Nisi član?
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modal1">Registracija</button>
+								</p>
+								
+							</form>
+							
+						</div>
+						<div class="modal-footer">
+							<button  class="btn btn-primary btn-block" data-dismiss="modal">Prijavi se</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		{# <!-- ***********************************************     REGISTRACIJA    ************************************************** --> #}
+		
+		<div class="container">
+			{# <!-- Button trigger modal -->
+			<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+			Launch demo modal
+			</button> -->
+			<!-- Modal --> #}
+			<div class="modal" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Registracija</h5>
+							</button>
+						</div>
+						<div class="modal-body">
+							
+							<form class="container">
+								<div class="row ">
+									<div class="ime_prezime col-lg-12">
+										<div class=" d-flex flex-column justify-content-center align-items-center">
+											<div class=" col-lg-12  my-2">
+												<input class="form-control" id="Ime" type="text" class="validate" required="required" placeholder="Ime">
+												
+											</div>
+											<div class="col-lg-12  my-2">
+												<input id="prezime" type="text" class="validate form-control" required="required" placeholder="Prezime">
+												
+											</div>
+											<div class="input-field col-lg-12  my-2">
+												<input id="email" type="email" class="validate form-control" required="required" placeholder="user@mail.com">
+												
+											</div>
+											<div class="input-field col-lg-12  my-2">
+												<input id="username" type="text" class="validate form-control" required="required" placeholder="Username">
+												<!-- <label for="Phone">Phone</label> -->
+											</div>
+											<div class="input-field col-lg-12  my-2">
+												<input id="Phone" type="text" class="validate form-control" required="required" placeholder="Mobitel">
+												
+											</div>
+											<div class="col-12 my-2 row">
+												<input type="text" id="ulica" class="col-12 validate form-control" required="required" placeholder="Adresa">
+											</div>
+											<div class="col-12 my-2 row justify-content-around">
+												<input type="text" id="grad" class="col-5 validate form-control" required="required" placeholder="Grad">
+												<input type="text" id="post_br" class="col-5 validate form-control" required="required" placeholder="Poštanski broj">
+											</div>
+											
+											<div class="input-field col-s-12  my-2">
+												<input id="Password" type="password" class="validate form-control" required="required" placeholder="Lozinka">
+												
+											</div>
+											<div class="input-field col-s-12  my-2">
+												<input id="CnfPassword" type="password" class="validate form-control" required="required" placeholder="Potvrdi lozinku">
+												
+											</div>
+											<div class="container d-flex justify-content-center">
+												<div class="picture-container">
+													<div class="picture border d-flex align-content center">
+														<img id="wizardPicturePreview" class="img-fluid" src="{{ url_for('static', filename='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png') }}" title="">
+														<input type="file" id="wizard-picture" class="">
+													</div>
+													<h6 class="font-weight-light">Odaberi fotografiju</h6>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									
+									
+								</div>
+								
+							</form>
+							
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary" data-dismiss="modal">Potvrdi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		{# <!-- Navigation --> #}
+		<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+			<div class="container">
+				<a class="navbar-brand js-scroll-trigger" href="#page-top"><i class="far fa-compass"></i></a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto my-2 my-lg-0">
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="#dodaj_izlet">Dodaj izlet</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="#services">Korisnici</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="#portfolio">Izleti</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#user_modal" href=""><i class="fas fa-user-circle fa-2x"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{# <!-- Masthead --> #}
+		<header class="masthead">
+			<div class="container h-100">
+				<div class="row h-100 align-items-center justify-content-center text-center">
+					<div class="col-lg-10 align-self-end">
+						<h1 class="text-uppercase text-white text-uppercase font-weight-bold">Just go!</h1>
+						<hr class="divider my-4">
+					</div>
+					<div class="col-lg-8 align-self-baseline">
+						<blockquote class="blockquote text-white-75 font-weight-light mb-5">
+							<p>“If we were meant to stay in one place, we would have roots instead of feet.”</p>
+						<footer class="blockquote-footer">Rachel Wolchin<cite title="Source Title"></cite></footer>
+					</blockquote>
+					<a class="btn btn-primary btn-xl js-scroll-trigger" href="#dodaj_izlet">Rezerviraj!</a>
+					<a class="btn btn-secondary btn-outline-primary border border-primary btn-xl js-scroll-trigger" href="#dodaj_izlet">Dodaj izlet</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	{# <!-- ***********************************************     STVORI NOVI IZLET    ************************************************** --> #}
+	<section class="page-section bg-primary" id="dodaj_izlet">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<h2 class="text-white mt-0">We've got what you need!</h2>
+					<hr class="divider light my-4">
+					<p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+					<a class="btn btn-light btn-xl js-scroll-trigger" onclick="toggler('target');">Dodaj novi izlet!</a>
+				</div>
+			</div>
+		</div>
+		
+		<div id="target" class="container hidden">
+			<form class="novi_iz row justify-content-center ">
+				<div class="col-lg-8">
+					<div class=" d-flex flex-column justify-content-center align-items-center">
+						<div class=" col-lg-12  my-2">
+							<input class="form-control" id="Naziv_izleta" type="text" class="validate" placeholder="Naziv izleta">
+							<!-- <label for="Email">Ime</label> -->
+						</div>
+						
+						<div class="my-2 col-12">
+							<label for="example-datetime-local-input">Datum polaska</label>
+							<input class="form-control " type="datetime-local" value="" id="datum_polaska" placeholder="Datum polaska">
+						</div>
+						<div class="my-2 col-12">
+							<label for="example-datetime-local-input">Datum povratka</label>
+							<input class="form-control" type="datetime-local" value="" id="datum_povratka" placeholder="Datum povratka">
+						</div>
+						<div class="form-group col-12 shadow-textarea">
+							<label for="exampleFormControlTextarea6"></label>
+							<textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Plan izleta..."></textarea>
+						</div>
+						
+						<div class=" col-lg-12 row justify-content-around  my-2">
+							<input class="form-control col-md-5 my-2" id="mj_polaska" type="text" class="validate" required="required" placeholder="Mjesto polaska">
+							<input class="form-control col-md-5 my-2" id="naziv_destinacije" type="text" class="validate" required="required" placeholder="Destinacija">
+							<input class="form-control col-md-5 my-2" id="br_sudionika" type="number" class="validate" required="required" placeholder="Broj sudionika">
+							<input class="form-control col-md-5 my-2" id="cijena" type="number" min="0.00" step="0.05" value="" class="validate" required="required" placeholder="Cijena">
+							
+						</div>
+						
+						
+						
+						{# <!-- ***********************************************     UPLOAD SLIKA    ************************************************** --> #}
+						<div class="row col-12  my-2">
+							<div class="jquery-script-ads"><script type="text/javascript"><!--
+										google_ad_client = "ca-pub-2783044520727903";
+										/* jQuery_demo */
+										google_ad_slot = "2780937993";
+										google_ad_width = 728;
+										google_ad_height = 90;
+								//-->
+								</script>
+								<script type="text/javascript"
+								src="{{ url_for('static', filename='http://pagead2.googlesyndication.com/pagead/show_ads.js') }}">
+							</script></div>
+							<div class="jquery-script-clear"></div>
+							
+							<div class="uploader__box js-uploader__box l-center-box">
+								<form action="your/nonjs/fallback/" method="POST">
+									<div class="uploader__contents">
+										<label class="button button--secondary" for="fileinput">Select Files</label>
+										<input id="fileinput" class="uploader__file-input" type="file" multiple value="Select Files">
+									</div>
+									<input class="button button--big-bottom" type="button" value="Upload Selected Files">
+								</form>
+							</div>
+							<script src="{{ url_for('static', filename='http://code.jquery.com/jquery-1.12.4.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='dist/jquery.imageuploader.js') }}"></script>
+							<script>
+							(function(){
+							var options = {};
+							$('.js-uploader__box').uploader(options);
+							}());
+							</script>
+							<script type="text/javascript">
+							var _gaq = _gaq || [];
+							_gaq.push(['_setAccount', 'UA-36251023-1']);
+							_gaq.push(['_setDomainName', 'jqueryscript.net']);
+							_gaq.push(['_trackPageview']);
+							(function() {
+							var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+							ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+							})();
+							</script>
+						</div>
+						{# <!-- ***********************************************     UPLOAD SLIKA (KRAJ)   ************************************************** --> #}
+						
+						<button  class="btn btn-primary potvrdi text-white btn-s js-scroll-trigger">Potvrdi!</button>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+			</div>
+			
+			
+		</div>
+		
+	</form>
+</div>
+</section>
+{# <!-- ***********************************************     KORISNICI    ************************************************** --> #}
+<section class="page-section" id="services">
+<div class="container">
+	
+	<h2 class="text-center mt-0">Korisnici</h2>
+	<hr class="divider my-4">
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/6.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Ivo Ivic</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/5.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Ana Anic</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.!</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/1.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Pero Peric</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+										</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/4.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Petra Petric</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="container">
+					<div class="row justify-content-around">
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/4.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Petra Petric</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/3.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Ivo Ivic</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+										</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/2.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Ana Anic</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+										</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3 mb-4">
+							<div class="card">
+								<img class="card-img-top" src="{{ url_for('static', filename='img/profil/1.jpg') }}" alt="">
+								<a href=""  data-toggle="modal" data-target="#user_profile_modal">
+									<div class="card-body">
+										<h5 class="card-title">Pero Peric</h5>
+										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+										</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+</div>
+</section>
+</section>
+{# <!-- ***********************************************     PRAZNO    ************************************************** --> #}
+<section class="page-section bg-dark text-white">
+<div class="container text-center">
+
+</div>
+</section>
+{# <!-- ***********************************************         ************************************************** -->
+
+<!-- ***********************************************     IZLETI    ************************************************** --> #}
+<section id="portfolio">
+<div class="container-fluid">
+<h2 class="text-center mt-0">Izleti</h2>
+<hr class="divider my-4">
+<div class="container row justify-content-around col-12">
+	<hr class="mt-2 mb-5">
+	<div id="carouselExampleIndicators" class="carousel slide row justify-content-around" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner col-10">
+    <div class="carousel-item active">
+      <div class="container-fluid p-0">
+      <div class="row no-gutters">
+        <div class="col-lg-4 col-sm-6 p-1 p-3">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/2.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/3.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+            
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/4.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+             
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+            
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/6.jpg') }}" alt="">
+            <div class="portfolio-box-caption p-3">
+             
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container-fluid p-0">
+      <div class="row no-gutters">
+        <div class="col-lg-4 col-sm-6 p-1 p-3">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/2.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Category
+              </div>
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/3.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+            
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/4.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+             
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+            
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 p-1">
+          <a class="portfolio-box" href="" data-toggle="modal" data-target="#izlet">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/6.jpg') }}" alt="">
+            <div class="portfolio-box-caption p-3">
+             
+              <div class="project-name">
+                Project Name
+              </div>
+              <div class="project-category text-white-50">
+                Category
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+  <a class="carousel-control-prev col-1" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next col-1" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+</div>
+</section>
+{# <!-- Contact Section -->
+<!-- Footer --> #}
+<footer class="bg-light py-5">
+<div class="container">
+<div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
+</div>
+</footer>
+{# <!-- Bootstrap core JavaScript --> #}
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+{# <!-- Plugin JavaScript --> #}
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+{# <!-- Custom scripts for this template --> #}
+<script src="{{ url_for('static', filename='js/creative.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/izleti.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/upload_image.js') }}"></script>
+</body>
+</html>

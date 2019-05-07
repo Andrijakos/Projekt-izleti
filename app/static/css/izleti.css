@@ -1,0 +1,192 @@
+.navbar-brand 
+{
+	font-size: 2rem;
+}
+header.masthead 
+{
+	    background: linear-gradient(to bottom,rgba(92,77,66,.3) 0,rgba(92,77,66,.3) 100%),url(../img/background.jpg) !important;
+}
+.btn-secondary
+{
+	background-color: rgba(210, 212, 216,.7);
+}
+
+.modal-content
+{
+	background-color: rgba(119, 123, 128, .9);
+	color: white;
+	font-weight: 100;
+}
+.form-control
+{
+	background-color: rgba(245,245,245, .8); 
+	outline: 0;
+  	border-width: 0 0 0.1rem;
+  	color: #777778;
+}
+
+::-webkit-input-placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+::-moz-placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+:-ms-input-placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+::placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+
+.hidden {
+     display:none;
+     margin-top: 4rem;
+     margin-bottom: 2rem;
+}
+
+#example-datetime-local-input, #example-datetime-local-input2, label
+{
+	color: #495057;
+  font-size: 13px;
+}
+
+label
+{
+	margin: .5rem;
+}
+
+.custom-control-label::after
+{
+	background: #C4C4C4;
+	border-radius: 50;
+}
+
+.novi_iz
+{
+	background-color: #EEEDED;
+	border-radius: 2%;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+.potvrdi
+{
+	border-radius: 10rem;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon
+{
+	padding: 1rem;
+	background-color: orange;
+}
+
+#portfolio{
+	    padding: 8rem 0;
+}
+#dodaj_trosak, .remove
+{
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.remove
+{
+	color: #ACACAC;
+}
+
+#dodaj_trosak:focus, .remove:focus
+{
+	outline: none;
+}
+
+.trosak
+{
+	padding-bottom: 0.5rem;
+}
+
+#map {
+        height: 30rem;
+        width: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+ 
+      #floating-panel {
+        position: absolute;
+        bottom: 10%;
+        left: 3%;
+        z-index: 5;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+.ponisti_markere
+{
+	border-radius: 100%;
+	background-color: #C4C4C4;
+	color: #f4623a;
+}
+      #wrapper { position: relative; }
+
+.button--big-bottom, .uploader__submit-button
+{
+	background-color: #f4623a;
+	border: 2px solid #f4623a;
+}
+
+.uploader__submit-button:hover
+{
+	background-color: #F58B6E;
+	border: 2px solid #F58B6E;
+}
+
+
+.uploader__file-label{
+	border: 2px solid #f4623a;
+	color: #f4623a;
+}
+ .uploader__file-label:hover{
+	border: 2px solid #A3A2A2;
+	background-color: #F58B6E;
+}
+.uploader__file-label:active{
+	background-color: #f4623a;
+	color: white;
+}
+
+.narancasto 
+	{
+		color: #f4623a;
+	}
+	.izlet_img
+	{
+		padding: 0.3rem;
+	}
+
+	#user_profile_modal
+	{
+		    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+	}
+
+	#user_profile_modal .modal-content
+	{
+		background-color: white;
+		color: #212529;
+	}
+
+	#user_modal, #izlet, #modal1, #modal2
+	{
+		    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+	}
+
+	#user_modal .modal-content, #izlet .modal-content
+	{
+		background-color: white;
+		color: #212529;
+	}
+

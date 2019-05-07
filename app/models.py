@@ -49,7 +49,7 @@ class Trip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     trip_name = db.Column(db.String(128), index=True)
     max_number = db.Column(db.Integer, index=True)
-    start_date = db.Column(db.DateTime, index=True)
+    start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime, index=True)
     price = db.Column(db.Integer, index=True)
     destination = db.Column(db.String(64), index=True)
