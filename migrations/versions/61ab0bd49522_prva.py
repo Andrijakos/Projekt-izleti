@@ -1,8 +1,8 @@
-"""prve promjene
+"""prva
 
-Revision ID: fe9b340aceec
+Revision ID: 61ab0bd49522
 Revises: 
-Create Date: 2019-05-06 14:27:43.440005
+Create Date: 2019-05-08 12:19:02.408310
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fe9b340aceec'
+revision = '61ab0bd49522'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -62,7 +62,6 @@ def upgrade():
     op.create_index(op.f('ix_trip_end_date'), 'trip', ['end_date'], unique=False)
     op.create_index(op.f('ix_trip_max_number'), 'trip', ['max_number'], unique=False)
     op.create_index(op.f('ix_trip_price'), 'trip', ['price'], unique=False)
-    op.create_index(op.f('ix_trip_start_date'), 'trip', ['start_date'], unique=False)
     op.create_index(op.f('ix_trip_trip_description'), 'trip', ['trip_description'], unique=False)
     op.create_index(op.f('ix_trip_trip_name'), 'trip', ['trip_name'], unique=False)
     op.create_table('trip_user',
@@ -80,7 +79,6 @@ def downgrade():
     op.drop_table('trip_user')
     op.drop_index(op.f('ix_trip_trip_name'), table_name='trip')
     op.drop_index(op.f('ix_trip_trip_description'), table_name='trip')
-    op.drop_index(op.f('ix_trip_start_date'), table_name='trip')
     op.drop_index(op.f('ix_trip_price'), table_name='trip')
     op.drop_index(op.f('ix_trip_max_number'), table_name='trip')
     op.drop_index(op.f('ix_trip_end_date'), table_name='trip')

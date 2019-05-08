@@ -1,0 +1,46 @@
+<div class="container">
+			<div class="modal font-weight-light" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
+							</button>
+						</div>
+						<div class="modal-body">
+
+							<form class="text-center p-5">
+								{# <!-- Username --> #}
+								<input type="text" id="username_login" class="form-control mb-4" required="required" placeholder="Username">
+								<!-- Password -->
+								<input type="password" id="password_login" class="form-control mb-4" required="required" placeholder="Lozinka">
+								<div class="d-flex justify-content-around">
+									<div>
+										{# <!-- Remember me --> #}
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+											<label class="custom-control-label" for="defaultLoginFormRemember">Zapamti prijavu</label>
+										</div>
+									</div>
+									<div>
+										{# <!-- Forgot password --> #}
+										<a href="">Zaboravili ste lozinku?</a>
+									</div>
+								</div>
+
+								<hr>
+								{# <!-- Register --> #}
+								<p style="font-size: 0.9rem">Nisi član?
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modal1">Registracija</button>
+								</p>
+
+							</form>
+
+						</div>
+						<div class="modal-footer">
+							<button  class="btn btn-primary btn-block" data-dismiss="modal">Prijavi se</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>

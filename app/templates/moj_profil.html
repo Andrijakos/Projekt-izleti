@@ -1,0 +1,48 @@
+<div class="container">
+			<div class="modal fade" id="user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Moj profil</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container-fluid">
+								<div class="row justify-content-around">
+									<div class="col-md-6 d-flex flex-column align-items-left justify-content-center">
+										<div><span class="narancasto">Ime:</span> Kenny</div>
+										<div><span class="narancasto">Prezime:</span> McCormic</div>
+										<div><span class="narancasto">Email:</span> kenny.m@gmail.com</div>
+									</div>
+									<div class="col-md-4"><img class="img-fluid" src="{{ url_for('static', filename='img/profil/kenny.jpg') }}" alt=""></div>
+								</div>
+								<hr>
+								<div><span class="narancasto">Stvoreni izleti:</span></div>
+								<div class="row">
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+									{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+								</div>
+								<hr>
+								<div><span class="narancasto">Prijavljeni izleti:</span></div>
+								<div class="row">
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt=""> </div>
+									{# <div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/2.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/3.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/4.jpg" alt=""> </div>
+									<div class="col-xs-2 col-md-4"> <img class="img-fluid izlet_img" src="img/portfolio/thumbnails/5.jpg" alt=""> </div> #}
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Odjavi se</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
