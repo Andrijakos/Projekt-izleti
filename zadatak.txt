@@ -1,0 +1,14 @@
+1.trip.html, forma i sve isto kao register
+kreirat trip.html, 
+
+1.u izlet.py
+from wtforms.fields import DateField
+
+class MyForm(Form):
+    date = DateField(id='datepick')
+2.
+
+1.Svi izleti iz baze
+2.Svi izleti odredenog korisnika
+3.Izleti desc., od zadnjeg do prvog
+4.POdaci izleta-broj prijavljenih, ime, datum polaska,

@@ -1,60 +1,26 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+
 {% block content %}
-<div class="container">
-			<div class="modal font-weight-light" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Prijava</h5>
-							</button>
-						</div>
-						<div class="modal-body">
-
-							<form class="text-center p-5" method="post" novalidate>
-                                {# {{ form.hidden_tag() }} #}
-								{# <!-- Username --> #}
-                                {{ form.username(size=32, class ='form-control mb-4', placeholder="Username") }}
-                                {% for error in form.username.errors %}
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-								<!-- Password -->
-								{{ form.password(size=32, class ='form-control mb-4', placeholder="Lozinka") }}
-								{% for error in form.password.errors %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-							{#	<input type="password" id="password_login" class="form-control mb-4" required="required" placeholder="Lozinka"> #}
-								<div class="d-flex justify-content-around">
-									<div>
-										{# <!-- Remember me --> #}
-										<div class="custom-control custom-checkbox">
-											{{ form.remember_me(class="custom-control") }}{{ form.remember_me.label }}
-										{# <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-											<label class="custom-control-label" for="defaultLoginFormRemember">Zapamti prijavu</label>#}
-										</div>
-									</div>
-									<div>
-										{# <!-- Forgot password --> #}
-										<a href="">Zaboravili ste lozinku?</a>
-									</div>
-								</div>
-
-								<hr>
-								{# <!-- Register --> #}
-								<p style="font-size: 0.9rem">Nisi član?
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modal1">Registracija</button>
-								</p>
-<div class="modal-footer">
-							{{ form.submit(class="btn btn-primary btn-block") }}
-							{# <button  class="btn btn-primary btn-block" data-dismiss="modal">Prijavi se</button> #}
-						</div>
-							</form>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-		</div>
-
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
 {% endblock %}
+© 2019 GitHub, Inc.
