@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <article class="media content-section">
+            <h1>Ime puta {{ trip.name }}</h1><br>
+          <img  src="{{ url_for('static', filename='trip_pics/' + trip.image_file) }}">
+        </article>
+{% endblock content %}

@@ -1,12 +1,12 @@
+import os
+import secrets
 from flask import render_template, redirect, url_for, flash, request
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, TripForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Trip
 from werkzeug.urls import url_parse
-# from flask_bootstrap import Bootstrap
-from flask_wtf import Form
-from wtforms.fields import DateField
+
 
 @app.route('/')
 @app.route('/index')
@@ -57,7 +57,7 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Congratulations, you are now a registered user!', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 '''
@@ -75,12 +75,27 @@ class MyForm(Form):
     date = DateField(id='datepick')
 '''
 
+# funkcija za spremanje(i renaming) uploadane slike
+def save_trip_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join('static/trip_pics', picture_fn)
+    form_picture.save(picture_path)
+
+    return picture_fn
+
+
 @app.route('/create_trip', methods=['GET', 'POST'])
+@login_required
 def create_trip():
     form = TripForm()
     # form1 = MyForm()
+    trip = Trip()
     if form.validate_on_submit():
-        trip = Trip()
+        if form.picture.data:
+            picture_file = save_trip_picture(form.picture.data)
+            trip.image_file = picture_file
         trip.trip_name = form.name.data
         trip.destination = form.destination.data
         trip.max_number = form.max_number.data
@@ -93,7 +108,7 @@ def create_trip():
         db.session.add(trip)
         db.session.commit()
 
-        flash('Congratulations, you added your trip!')
+        flash('Congratulations, you added your trip!', 'success')
         return redirect(url_for('index'))
     return render_template('create_trip.html', title='Create Trip', form=form)
 
@@ -135,6 +150,12 @@ def edit_profile():
         form.cellphone.data = current_user.tel_number
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+# OVO DORADITI NE VALJA!!
+@app.route('/trip/<id>')
+def trip(id):
+    trip = Trip.filter(id=id)
+    return render_template('trip.html', title=trip.name, trip=trip)
+
 
 
 

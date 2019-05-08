@@ -49,6 +49,7 @@ class Trip(db.Model):
     price = db.Column(db.Integer, index=True)
     destination = db.Column(db.String(64), index=True)
     trip_description = db.Column(db.Text(1000), index=True)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
