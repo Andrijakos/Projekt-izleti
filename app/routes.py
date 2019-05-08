@@ -4,6 +4,9 @@ from app.forms import LoginForm, RegistrationForm, TripForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Trip
 from werkzeug.urls import url_parse
+# from flask_bootstrap import Bootstrap
+from flask_wtf import Form
+from wtforms.fields import DateField
 
 @app.route('/')
 @app.route('/index')
@@ -57,20 +60,42 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+'''
+Bootstrap(app)
+class MyForm(Form):
+    date = DateField(id='datepick')
+'''
 
+
+
+
+'''
+Bootstrap(app)
+class MyForm(Form):
+    date = DateField(id='datepick')
+'''
 
 @app.route('/create_trip', methods=['GET', 'POST'])
-def make_trip():
+def create_trip():
     form = TripForm()
+    # form1 = MyForm()
     if form.validate_on_submit():
-        trip = Trip(trip_name=form.name.data, max_number=form.max_number.data, start_date=form.start_date.data, end_date=form.end_date.data, price=form.price.data, destination=form.destination.data,
-                    trip_description=form.description.data)  # Kako dodati id usera?
+        trip = Trip()
+        trip.trip_name = form.name.data
+        trip.destination = form.destination.data
+        trip.max_number = form.max_number.data
+        trip.start_date = form.start_date.data
+        trip.end_date = form.end_date.data
+        trip.trip_description = form.description.data
+        trip.price = form.price.data
+        trip.id_user = current_user.id
+        # import pdb; pdb.set_trace()
         db.session.add(trip)
         db.session.commit()
-        flash('Congratulations, you added your trip!')
-        return redirect(url_for('trips'))
-    return render_template('create_trip.html', title='Create Trip', form=form)
 
+        flash('Congratulations, you added your trip!')
+        return redirect(url_for('index'))
+    return render_template('create_trip.html', title='Create Trip', form=form)
 
 
 @app.route('/user/<username>')

@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, DateTimeField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Length, Email, EqualTo
 from app.models import User
+from wtforms.fields.html5 import DateField
 
 
 class RegistrationForm(FlaskForm):
@@ -38,12 +39,13 @@ class LoginForm(FlaskForm):
 
 class TripForm(FlaskForm):
     name = StringField('Tripname', validators=[DataRequired(), Length(min=2, max=128)])
-    destination = StringField('Destination', validators=[DataRequired(), Length(min=2, max=64)])
-    max_number = IntegerField('Max number', validators=[DataRequired(), Length(min=1)])
-    start_date = DateTimeField('Start date', validators=[DataRequired()])
-    end_date = DateTimeField('End date', validators=[DataRequired()])
-    description = TextAreaField('Trip description', validators=[DataRequired(), Length(max=1000)])  #vidit textareafield dal će valjat
+    destination = StringField('Destination', validators=[DataRequired()])
+    max_number = IntegerField('Max number', validators=[DataRequired()])
+    start_date = DateField('Start date', validators=[DataRequired()])
+    end_date = DateField('End date', validators=[DataRequired()])
+    description = TextAreaField('Trip description', validators=[DataRequired(), Length(max=1000)])
     price = IntegerField('Price', validators=[DataRequired()])
+    submit = SubmitField('Kreiraj izlet')
 
 
 class EditProfileForm(FlaskForm):
