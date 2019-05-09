@@ -18,7 +18,6 @@ class RegistrationForm(FlaskForm):
     city = StringField('City', validators=[DataRequired()])
     zipcode = IntegerField('Zipcode', validators=[DataRequired()])
     country = StringField('Country', validators=[DataRequired()])
-    picture = FileField('Upload User Avatar', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):

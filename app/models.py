@@ -17,7 +17,6 @@ class User(UserMixin, db.Model):
     city = db.Column(db.String(64), index=True)
     country = db.Column(db.String(64), index=True)
     tel_number = db.Column(db.String(64), index=True)
-    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password_hash = db.Column(db.String(128))
 
     def set_password(self, password):
