@@ -6,6 +6,7 @@ from app.forms import LoginForm, RegistrationForm, TripForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Trip
 from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
 
@@ -55,10 +56,9 @@ def register():
     form = RegistrationForm()
     user = User()
     if form.validate_on_submit():
-
-        if form.picture.data:
-            picture_file = save_user_picture(form.picture.data)
-            user.image_file = picture_file
+        img = request.files['picture']
+        img_name = secure_filename(img.filename)
+        user.image_file = img_name
         user.name = form.name.data
         user.surname = form.surname.data
         user.username = form.username.data
@@ -71,6 +71,9 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+
+        img.save(os.path.join(app.config['avatars'], img_name))
+
         flash('Congratulations, you are now a registered user!', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -136,8 +139,8 @@ def create_trip():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    #  tu će ići Trips
-    return render_template('user.html', user=user)   # dodat trips=trips
+    trips = Trip.query.filter_by(id_user=user.id).all()
+    return render_template('user.html', user=user, trips=trips)   # dodat trips=trips
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])

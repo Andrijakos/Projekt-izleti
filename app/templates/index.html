@@ -16,8 +16,15 @@
         <li>Country: {{ current_user.country }}</li>
     </ul>
     <div>Moja putovanja</div>
-        {% for trip in trips %}
-            <p> {{ trip.trip_name }}</p>
+
+         {% for trip in trips %}
+        <article class="media content-section">
+
+            <h1>Ime puta {{ trip.trip_name }}</h1><br>
+            <p>{{ trip.image_file }}</p>
+          <img  src="{{ url_for('static', filename='trip_pics/' + trip.image_file) }}">
+        </article>
         {% endfor %}
+
 
 {% endblock %}
