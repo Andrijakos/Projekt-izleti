@@ -6,6 +6,7 @@ from app.forms import LoginForm, RegistrationForm, TripForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Trip
 from werkzeug.urls import url_parse
+from datetime import datetime, timedelta
 
 
 @app.route('/')
@@ -38,13 +39,26 @@ def logout():
     return redirect(url_for('index'))
 
 
+def save_user_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_ff = random_hex + f_ext
+    picture_path = os.path.join('static/avatars', picture_ff)
+    form_picture.save(picture_path)
+
+    return picture_ff
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
+    user = User()
     if form.validate_on_submit():
-        user = User()
+
+        if form.picture.data:
+            picture_file = save_user_picture(form.picture.data)
+            user.image_file = picture_file
         user.name = form.name.data
         user.surname = form.surname.data
         user.username = form.username.data
@@ -96,6 +110,11 @@ def create_trip():
         if form.picture.data:
             picture_file = save_trip_picture(form.picture.data)
             trip.image_file = picture_file
+        '''    
+        if trip.start_date > trip.end_date:
+            flash('Ne moš se vratit prije no što kreneš')
+            return redirect(url_for('create_trip'))
+        '''
         trip.trip_name = form.name.data
         trip.destination = form.destination.data
         trip.max_number = form.max_number.data
@@ -137,7 +156,7 @@ def edit_profile():
         current_user.tel_number = form.cellphone.data
         db.session.commit()
         flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
+        return redirect(url_for('user', username=current_user.username))
     elif request.method == 'GET':
         form.name.data = current_user.name
         form.surname.data = current_user.surname
@@ -150,13 +169,15 @@ def edit_profile():
         form.cellphone.data = current_user.tel_number
     return render_template('edit_profile.html', title='Edit Profile',
                            form=form)
+
+'''
 # OVO DORADITI NE VALJA!!
-@app.route('/trip/<id>')
+@app.route('/trip')
 def trip(id):
     trip = Trip.filter(id=id)
-    return render_template('trip.html', title=trip.name, trip=trip)
+    return render_template('trip.html', id=)
 
-
+'''
 
 
 # dekorator za last seen ako ćemo ubacit
