@@ -2,7 +2,7 @@ alembic==1.0.7
 amqp==2.4.1
 billiard==3.5.0.5
 cairocffi==1.0.0
-CairoSVG==2.3.0
+CairoSVG==2.5.1
 celery==4.2.1
 cffi==1.11.5
 Click==7.0
