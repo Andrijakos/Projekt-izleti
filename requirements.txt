@@ -24,7 +24,7 @@ lml==0.0.9
 Mako==1.0.7
 MarkupSafe==1.1.0
 pdfkit==0.6.1
-Pillow==5.4.1
+Pillow==8.2.0
 pycparser==2.19
 pyexcel==0.5.10
 pyexcel-io==0.5.13
