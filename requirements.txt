@@ -3,7 +3,7 @@ amqp==2.4.1
 billiard==3.5.0.5
 cairocffi==1.0.0
 CairoSVG==2.3.0
-celery==4.2.1
+celery==5.2.2
 cffi==1.11.5
 Click==7.0
 cssselect2==0.2.1
